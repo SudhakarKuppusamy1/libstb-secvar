@@ -241,7 +241,6 @@ void crypto_pkcs7_free (crypto_pkcs7_t *pkcs7)
   PKCS7_free (pkcs7);
 }
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 crypto_x509_t *crypto_pkcs7_get_signing_cert (crypto_pkcs7_t *pkcs7, int cert_num)
 {
   X509 *pkcs7_cert = NULL;
@@ -250,7 +249,6 @@ crypto_x509_t *crypto_pkcs7_get_signing_cert (crypto_pkcs7_t *pkcs7, int cert_nu
 
   return pkcs7_cert;
 }
-#endif
 
 /*
  * currently this function works and the mbedtls version currently perform the following steps
@@ -385,7 +383,6 @@ crypto_x509_t *crypto_x509_parse_der (const unsigned char *data, size_t data_len
   return d2i_X509 (NULL, &data, data_len);
 }
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 int crypto_x509_md_is_sha256 (crypto_x509_t *x509)
 {
   int rc;
@@ -694,7 +691,6 @@ int crypto_pkcs7_generate_w_already_signed_data (unsigned char **pkcs7, size_t *
          "externally generated signatures when compiling with OpenSSL\n");
   return ERR_PACK(ERR_LIB_PKCS7, 0, PKCS7_R_UNKNOWN_OPERATION);
 }
-#endif
 
 int crypto_md_ctx_init (crypto_md_ctx_t **ctx, int md_id)
 {

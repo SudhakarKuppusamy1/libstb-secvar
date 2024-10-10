@@ -104,7 +104,6 @@ static const uuid_t PKS_CERT_X509_GUID = { { 0xa1, 0x59, 0xc0, 0xa5, 0xe4, 0x94,
                                              0xa7, 0x4a, 0x87, 0xb5, 0xab, 0x15,
                                              0x5c, 0x2b, 0xf0, 0x72 } };
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 /*
  * It is derived from EFI_CERT_SHA1_GUID
  * https://github.com/tianocore/edk2-staging/blob/master/MdePkg/Include/Guid/ImageAuthentication.h
@@ -181,7 +180,6 @@ static const uuid_t PKS_CERT_X509_SHA512_GUID = { { 0x63, 0xbf, 0x6d, 0x44, 0x02
 static const uuid_t PKS_CERT_SBAT_GUID = { { 0x50, 0xab, 0x5d, 0x60, 0x46, 0xe0,
                                              0x0, 0x43, 0xab, 0xb6, 0x3d, 0xd8,
                                              0x10, 0xdd, 0x8b, 0x23 } };
-#endif
 
 /*
  * It is derived from EFI_SIGNATURE_DATA
@@ -332,12 +330,10 @@ struct auth_data
 typedef struct auth_data auth_data_t;
 typedef struct update_request update_req_t;
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 static const char defined_sb_variables [9] [12] = { "PK", "KEK", "db", "dbx", "grubdb",
                                                        "grubdbx", "sbat", "moduledb",
                                                        "trustedcadb"
                                                      };
 static const int defined_sb_variable_len = 9;
-#endif
 
 #endif

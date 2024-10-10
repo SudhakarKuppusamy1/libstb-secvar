@@ -52,7 +52,6 @@ crypto_pkcs7_t *crypto_pkcs7_parse_der (const unsigned char *buf, const int bufl
  */
 int crypto_pkcs7_md_is_sha256 (crypto_pkcs7_t *pkcs7);
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 /*
  * returns one signing ceritficate from the PKKCS7 signing certificate chain
  * @param pkcs7 ,  a pointer to a pkcs7 struct
@@ -96,7 +95,6 @@ int crypto_pkcs7_generate_w_already_signed_data (unsigned char **pkcs7, size_t *
                                       const unsigned char *new_data, size_t new_data_size,
                                       const char **crt_files, const char **sig_files,
                                       int key_pairs, int hash_funct);
-#endif
 
 /*
  * determines if signed data in pkcs7 is correctly signed by x509 by signing the hash with the
@@ -171,7 +169,6 @@ void crypto_x509_free (crypto_x509_t *x509);
  */
 crypto_x509_t *crypto_x509_parse_der (const unsigned char *data, size_t data_len);
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 /* return CRYPTO_SUCCESS if md of cert is sha256 */
 int crypto_x509_md_is_sha256 (crypto_x509_t *x509);
 
@@ -192,7 +189,6 @@ void crypto_x509_get_short_info (crypto_x509_t *x509, char *short_desc, size_t m
  * @return number of bytes written to x509_info
  */
 int crypto_x509_get_long_desc (char *x509_info, size_t max_len, const char *delim, crypto_x509_t *x509);
-#endif
 
 /**====================Hashing Functions ====================**/
 
@@ -250,7 +246,6 @@ int crypto_md_generate_hash (const unsigned char *data, size_t size, int hash_fu
  */
 void crypto_strerror (int rc, char *out_str, size_t out_max_len);
 
-#ifdef SECVAR_CRYPTO_WRITE_FUNC
 /*
  * attempts to convert PEM data buffer into DER data buffer
  * @param input , PEM data buffer
@@ -261,6 +256,5 @@ void crypto_strerror (int rc, char *out_str, size_t out_max_len);
  * Note: Remember to unallocate the output data!
  */
 int crypto_convert_pem_to_der (const unsigned char *input, size_t ilen, unsigned char **output, size_t *olen);
-#endif
 
 #endif
