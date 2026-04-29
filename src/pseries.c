@@ -444,6 +444,9 @@ pseries_update_variable (const update_req_t *update_req, uint8_t **new_esl_data,
   else if ((is_pk = wide_str_equals (name, (const uint16_t *) &global_variable[0])) &&
            update_req->append_update)
       rc = SV_CANNOT_APPEND_TO_PK;
+  else if (wide_str_equals (name, (const uint16_t *) &security_variable[4]) &&
+           update_req->append_update) /* Do not allow an append update in the SBAT. */
+      rc = SV_INVALID_SBAT_UPDATE;
   else
     {
       auth_data.current_time = &current_time;
